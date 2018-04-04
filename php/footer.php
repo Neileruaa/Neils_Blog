@@ -1,6 +1,6 @@
 <footer class="blog-footer">
     <p>
-        <a href="cover.php">Back to cover</a>
+        <a href="Cover.php">Back to cover</a>
     </p>
     <p>Blog made by Neil Erua</p>
 </footer>

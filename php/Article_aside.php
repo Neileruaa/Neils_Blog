@@ -1,6 +1,6 @@
 <aside class="col-sm-3 ml-sm-auto blog-sidebar">
     <div class="sidebar-module sidebar-module-inset">
-        <?php include "aboutUstxt.php";?>
+        <?php include "AboutUs_bubble.php";?>
     </div>
     <div class="sidebar-module">
         <h4>Archives</h4>

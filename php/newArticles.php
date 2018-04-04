@@ -14,7 +14,7 @@
                 $compteur_articles=0;
                 foreach ($articles as $article){
 
-                   require 'articleBlog.php';
+                   require 'Article_describe.php';
 
                     if (++$compteur_articles== count($articles)) break; // on prend tous les articles de la bdd
                 }
@@ -24,7 +24,7 @@
                     <a class="btn btn-outline-primary " href="#">Newer</a>
                 </nav>
             </div><!-- /.blog-main -->
-            <?php include "aside.php" ?>
+            <?php include "Article_aside.php" ?>
         </div><!-- /.row -->
     </main><!-- /.container -->
 <?php include "footer.php";

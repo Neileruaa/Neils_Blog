@@ -13,7 +13,7 @@
                 <div class="inner">
                     <h3 class="masthead-brand">GeekHub</h3>
                     <nav class="nav nav-masthead">
-                        <a class="nav-link active" href="cover.php">Cover</a>
+                        <a class="nav-link active" href="Cover.php">Cover</a>
                         <a class="nav-link" href="home.php">Blog</a>
                     </nav>
                 </div>

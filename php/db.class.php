@@ -5,9 +5,9 @@
    */
     class DB{
     private $host = 'localhost';
-    private $username = 'id4203946_aurebapt'; //root //id4203946_aurebapt
-    private $password = 'aurebapt'; //titi2020 //aurebapt
-    private $database = 'id4203946_geekhub'; //myblog //id4203946_geekhub
+    private $username = 'root'; //root //id4203946_aurebapt
+    private $password = 'titi0301'; //titi2020 //aurebapt
+    private $database = 'Blog'; //myblog //id4203946_geekhub
     private $db;
 
     public function __construct($host = null, $username = null, $password = null, $database = null){

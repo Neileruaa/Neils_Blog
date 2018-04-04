@@ -1,4 +1,4 @@
-<?php $title = 'Home'; ?>
+    <?php $title = 'Home'; ?>
 <?php $currentPage = 'home'; ?>
 
 
@@ -41,7 +41,7 @@
            $articles = $DB->requete('SELECT * FROM article ORDER BY author');
            $compteur_articles=0;
            foreach ($articles as $article){
-            require 'articleBlog.php';
+            require 'Article_describe.php';
                if (++$compteur_articles== count($articles)) break; // on prend tous les articles de la bdd
            }
            ?>
@@ -53,9 +53,9 @@
 
         </div><!-- /.blog-main -->
 
-        <?php include "aside.php" ?>
+        <?php include "Article_aside.php" ?>
 
-        <button onclick="topFunction()" id="myBtn" class="btn" title="Go to top"><img src="../images/fleche_haut.png" style="width: 45px;"></button>
+        <button onclick="topFunction()" id="myBtn" class="btn" title="Go to top" style="padding: 0"><img src="../Images/fleche_haut.png" style="width: 45px;"></button>
     </div><!-- /.row -->
 
 </main><!-- /.container -->
