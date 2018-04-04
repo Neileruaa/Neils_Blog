@@ -1,2 +1,2 @@
 <?php
-header("Location: php/cover.php");
+header("Location: php/Cover.php");
