@@ -14,7 +14,10 @@ if (isset($_POST["username"]) && isset($_POST["password"]) && isset($_POST['subm
     $result = $stmt->fetchAll();
 
 
-    if($result[0]['password'] == "123" ){
+    $isValid = ($password == $result[0]['password']);
+
+
+    if  ($isValid){
         $_SESSION['isAdmin'] = true;
         echo $_SESSION['isAdmin'] ? 'true' : 'false';
         $_SESSION['authUser'] = $username;
