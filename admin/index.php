@@ -8,7 +8,7 @@ if (isset($_POST["username"]) && isset($_POST["password"]) && isset($_POST['subm
     $username = $_POST["username"];
     $password = $_POST["password"];
 
-    $sql = "SELECT username, password FROM ADMINISTRATEUR WHERE username = '".$username."';";
+    $sql = "SELECT idAdmin,username, password FROM ADMINISTRATEUR WHERE username = '".$username."';";
     echo $sql;
     $stmt = $bdd->query($sql);
     $result = $stmt->fetchAll();
@@ -21,6 +21,7 @@ if (isset($_POST["username"]) && isset($_POST["password"]) && isset($_POST['subm
         $_SESSION['isAdmin'] = true;
         echo $_SESSION['isAdmin'] ? 'true' : 'false';
         $_SESSION['authUser'] = $username;
+        $_SESSION['id'] = $result[0]['idAdmin'];
         header('Location: http://localhost/Blog/admin/Admin.php');
     }
 

@@ -25,7 +25,7 @@ CREATE TABLE IF NOT EXISTS POST(
   name VARCHAR(50),
   title VARCHAR(50),
   content TEXT,
-  date DATE,
+  datePost DATE,
   idCategory INT,
   idAdmin INT,
   PRIMARY KEY (idPost),

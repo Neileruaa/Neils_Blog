@@ -2,6 +2,7 @@
 require_once('../Connect_db.php');
 session_start();
 
+
 $categories = [];
 
     if (isset($_POST["name"])){
@@ -10,7 +11,7 @@ $categories = [];
         $stmt -> bindValue(':name', $_POST['name']);
         $stmt->execute();
     }
-$sql = "SELECT idCategory,name name FROM CATEGORY;";
+$sql = "SELECT idCategory,name FROM CATEGORY;";
 $stmt = $bdd -> prepare($sql);
 $stmt->execute();
 
@@ -20,6 +21,22 @@ if (isset($_POST["name"])){
     echo json_encode($categories);
     return;
 }
+
+if (isset($_POST["title"]) && isset($_POST["post"])) {
+
+    $sql = "INSERT INTO POST(title, content,idCategory, datePost) VALUES (:title, :content,
+            (SELECT C2.idCategory FROM POST INNER JOIN CATEGORY C2 on POST.idCategory = C2.idCategory WHERE C2.idCategory = :categoryId),
+            CURRENT_DATE()
+           );";
+    $stmt = $bdd->prepare($sql);
+    $stmt->bindValue(':title', $_POST['title']);
+    $stmt->bindValue(':content', $_POST['post']);
+    $stmt->bindValue(':categoryId', $_POST['category']);
+//    $stmt->bindValue(':authorId', $_SESSION['id']);
+
+    $stmt->execute();
+}
+
 ?>
 
 <html>
@@ -46,9 +63,15 @@ if (isset($_POST["name"])){
             Ajouter une nouvelle catégorie :
             <button id="addCategory" >Créer une nouvelle catégorie</button>
         </div>
+        <div>
+            <input type="text" name="postTitle" id="postTitle" placeholder="Titre de l'article">
+        </div>
     </div>
     <hr>
     <div><textarea name="editor"></textarea></div>
+    <div>
+        <button id="publish">Publier</button>
+    </div>
 </div>
 
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
@@ -72,6 +95,20 @@ if (isset($_POST["name"])){
                 $('#listCategories').html(categoriesHtml);
             }
         });
+    });
+
+    $('#publish').on('click', function(){
+        $.ajax({
+            method: "POST",
+            data: {
+                "post": CKEDITOR.instances.editor.getData(),
+                "title": $("#postTitle").val(),
+                "category" : $("#listCategories").val()
+            },
+            success: function(){
+                window.location.href = "";
+            }
+        })
     });
 </script>
 </body>
