@@ -62,9 +62,12 @@ fabric.properties
  modules.xml
  .idea/misc.xml
  *.ipr
+ .idea/vcs.xml
+ */vcs.xml
 
 # Sonarlint plugin
 .idea/sonarlint
 
 
 # End of https://www.gitignore.io/api/phpstorm
+
