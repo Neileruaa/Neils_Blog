@@ -13,18 +13,15 @@ if (isset($_POST["username"]) && isset($_POST["password"]) && isset($_POST['subm
     $stmt = $bdd->query($sql);
     $result = $stmt->fetchAll();
 
-
     $isValid = ($password == $result[0]['password']);
-
 
     if  ($isValid){
         $_SESSION['isAdmin'] = true;
         echo $_SESSION['isAdmin'] ? 'true' : 'false';
         $_SESSION['authUser'] = $username;
         $_SESSION['id'] = $result[0]['idAdmin'];
-        header('Location: http://localhost/Blog/admin/Admin.php');
+        header('Location: Admin.php');
     }
-
 }
 ?>
 

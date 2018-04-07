@@ -2,18 +2,36 @@
 require_once('../Connect_db.php');
 session_start();
 
-
-if(){
-
+if(!isset($_SESSION["isAdmin"]) || (isset($_SESSION["isAdmin"]) && !$_SESSION["isAdmin"])) {
+    echo "Unauthorized Access";
+    exit;
 }
 
-$sql="";
+
+$authUser = $_SESSION['authUser'];
+$id = $_SESSION['id'];
+$idCategory = $_SESSION['idCategory'];
+$postTitle = $_SESSION['postTitle'];
+$editor = $_SESSION['editor'];
+
+$sql="INSERT INTO POST(title, content,idCategory,idAdmin, datePost) VALUES (
+        :title,
+        :content,
+        ( SELECT idCategory
+          FROM CATEGORY
+          WHERE idCategory = :categoryId),
+        (SELECT idAdmin
+        FROM ADMINISTRATEUR
+        WHERE idAdmin = :authorId),        
+        CURRENT_DATE()
+      );";
 
 $stmt = $bdd->prepare($sql);
-$stmt->bindValue(':title', $_POST['title']);
-$stmt->bindValue(':content', $_POST['post']);
-$stmt->bindValue(':categoryId', $_POST['category']);
-//    $stmt->bindValue(':authorId', $_SESSION['id']);
+$stmt->bindValue(':title', $postTitle);
+$stmt->bindValue(':content', $editor);
+$stmt->bindValue(':categoryId',$idCategory);
+$stmt->bindValue(':authorId', $id);
 
 $stmt->execute();
 
+header("Location : Admin.php");
