@@ -9,40 +9,22 @@ if(!isset($_SESSION["isAdmin"]) || (isset($_SESSION["isAdmin"]) && !$_SESSION["i
 
 $categories = [];
 
-//
-//    if (isset($_POST["name"])){
-//        $sql= "INSERT INTO CATEGORY(name) VALUES (:name);";
-//        $stmt = $bdd->prepare($sql);
-//        $stmt -> bindValue(':name', $_POST['name']);
-//        $stmt->execute();
-//    }
+if (isset($_POST["name"])){
+        $sql= "INSERT INTO CATEGORY(name) VALUES (:name);";
+        $stmt = $bdd->prepare($sql);
+        $stmt -> bindValue(':name', $_POST['name']);
+        $stmt->execute();
+    }
 
 $sql = "SELECT idCategory,name FROM CATEGORY;";
 $stmt = $bdd -> prepare($sql);
 $stmt->execute();
-
 $categories = $stmt->fetchAll();
+
 if (isset($_POST["name"])){
     echo json_encode($categories);
-    return;
+    header("Refresh:0");
 }
-
-//if (isset($_POST["title"]) && isset($_POST["post"])) {
-//
-//    $sql = "INSERT INTO POST(title, content,idCategory, datePost) VALUES (:title, :content,
-//            (SELECT C2.idCategory FROM POST INNER JOIN CATEGORY C2 on POST.idCategory = C2.idCategory WHERE C2.idCategory = :categoryId),
-//            CURRENT_DATE()
-//           );";
-//    $stmt = $bdd->prepare($sql);
-//    $stmt->bindValue(':title', $_POST['title']);
-//    $stmt->bindValue(':content', $_POST['post']);
-//    $stmt->bindValue(':categoryId', $_POST['category']);
-////    $stmt->bindValue(':authorId', $_SESSION['id']);
-//
-//    $stmt->execute();
-//}
-
-
 if (isset($_POST['postTitle']) && $_POST['postTitle']!= ""
         && isset($_POST['submit'])
         && isset($_POST['editor'])
@@ -93,37 +75,23 @@ if (isset($_POST['postTitle']) && $_POST['postTitle']!= ""
 <script>
     CKEDITOR.replace( 'editor' );
 
-    // $('#addCategory').on('click', function(){
-    //     var newName = prompt("Entrez le nom de votre catégorie :");
-    //     $.ajax({
-    //         method: "POST",
-    //         data: {
-    //             "name": newName
-    //         },
-    //         dataType: "json",
-    //         success: function(categories){
-    //             var categoriesHtml;
-    //             for (category of categories){
-    //                 categoriesHtml += "<option value='" + category[0] + "'>" + category["name"] +  "</option>";
-    //             }
-    //             $('#listCategories').html(categoriesHtml);
-    //         }
-    //     });
-    // });
-    //
-    // $('#publish').on('click', function(){
-    //     $.ajax({
-    //         method: "POST",
-    //         data: {
-    //             "post": CKEDITOR.instances.editor.getData(),
-    //             "title": $("#postTitle").val(),
-    //             "category" : $("#listCategories").val()
-    //         },
-    //         success: function(){
-    //             window.location.href = "";
-    //         }
-    //     })
-    // });
+    $('#addCategory').on('click', function(){
+        var newName = prompt("Entrez le nom de votre catégorie :");
+        $.ajax({
+            method: "POST",
+            data: {
+                "name": newName
+            },
+            dataType: "json",
+            success: function(categories){
+                var categoriesHtml;
+                for (category of categories){
+                    categoriesHtml += "<option value='" + category[0] + "'>" + category["name"] +  "</option>";
+                }
+                $('#listCategories').html(categoriesHtml);
+            }
+        });
+    });
 </script>
 </body>
 </html>

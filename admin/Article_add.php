@@ -34,4 +34,4 @@ $stmt->bindValue(':authorId', $id);
 
 $stmt->execute();
 
-header("Location : Admin.php");
+header('Location: Admin.php');
