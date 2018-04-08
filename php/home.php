@@ -1,9 +1,28 @@
-    <?php $title = 'Home'; ?>
-<?php $currentPage = 'home'; ?>
+<?php $title = 'Home';
+$currentPage = 'home';
+include 'headBLOG.php';
+
+$sql = "SELECT 
+        p.idPost as id,
+        p.title as title,
+        A.username as adminUser,
+        C2.name as category,
+        p.datePost as date,
+        p.content as content
+        FROM POST p
+        LEFT JOIN ADMINISTRATEUR A 
+          ON p.idAdmin = A.idAdmin
+        LEFT JOIN CATEGORY C2 
+          ON p.idCategory = C2.idCategory
+        ORDER BY date DESC";
+$stmt = $bdd -> prepare($sql);
+$stmt->execute();
+$posts = $stmt ->fetchAll();
+
+?>
 
 
 
-<?php include 'headBLOG.php';?>
 <body>
 <?php include "navbar.php";?>
 <script>
@@ -38,11 +57,10 @@
         <div class="col-sm-8 blog-main">
 
            <?php
-           $articles = $DB->requete('SELECT * FROM article ORDER BY author');
            $compteur_articles=0;
-           foreach ($articles as $article){
+           foreach ($posts as $post){
             require 'Article_describe.php';
-               if (++$compteur_articles== count($articles)) break; // on prend tous les articles de la bdd
+               if (++$compteur_articles== count($posts)) break; // on prend tous les articles de la bdd
            }
            ?>
 

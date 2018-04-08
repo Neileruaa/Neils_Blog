@@ -1,8 +1,7 @@
 <?php
-require "db.class.php";
+require "../Connect_db.php";
 include "fctLengthEcho.php";
-
-$DB = new DB();?>
+?>
 <!doctype html>
 <html lang="fr">
 <head>
