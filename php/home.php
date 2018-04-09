@@ -2,6 +2,21 @@
 $currentPage = 'home';
 include 'headBLOG.php';
 
+$countPostSql = "SELECT COUNT(POST.idPost) as nbPost FROM POST";
+$req = $bdd->query($countPostSql);
+$res = $req->fetch();
+$nbPosts = $res['nbPost'];
+
+$perPage = 8;
+$nbPages = ceil($nbPosts / $perPage);
+
+if (isset($_GET['p']) && $_GET['p']>0 && $_GET['p']<= $nbPages){
+    $cPage = $_GET['p'];
+}else{
+    $cPage= 1;
+}
+
+
 $sql = "SELECT 
         p.idPost as id,
         p.title as title,
@@ -14,10 +29,15 @@ $sql = "SELECT
           ON p.idAdmin = A.idAdmin
         LEFT JOIN CATEGORY C2 
           ON p.idCategory = C2.idCategory
-        ORDER BY date DESC";
+        ORDER BY date DESC
+        LIMIT ".(($cPage -1)*$perPage).",$perPage;" ;
 $stmt = $bdd -> prepare($sql);
 $stmt->execute();
 $posts = $stmt ->fetchAll();
+
+
+
+
 
 ?>
 
@@ -63,13 +83,26 @@ $posts = $stmt ->fetchAll();
                if (++$compteur_articles== count($posts)) break; // on prend tous les articles de la bdd
            }
            ?>
+            <nav aria-label="Page navigation example">
+                <ul class="pagination">
+                    <?php
+                    for ($i = 1; $i<=$nbPages ; $i++){?>
+                            <li class="page-item"><a class="page-link" href="home.php?p=<?= $i ?>"><?= $i ?></a></li>
+                        <?php
+                    }
+                    ?>
+                </ul>
+            </nav>
+
         </div><!-- /.blog-main -->
 
         <?php include "Article_aside.php" ?>
 
         <button onclick="topFunction()" id="myBtn" class="btn" title="Go to top" style="padding: 0"><img src="../Images/fleche_haut.png" style="width: 45px;"></button>
+
+
     </div><!-- /.row -->
 
 </main><!-- /.container -->
 
-<?php include "footer.php";
+<?php include 'footer.php';
