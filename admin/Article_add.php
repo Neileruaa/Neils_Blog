@@ -1,6 +1,8 @@
 <?php
 require_once('../Connect_db.php');
 session_start();
+$title = "GeekHub : Article";
+
 
 if(!isset($_SESSION["isAdmin"]) || (isset($_SESSION["isAdmin"]) && !$_SESSION["isAdmin"])) {
     echo "Unauthorized Access";

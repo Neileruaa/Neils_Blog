@@ -1,3 +1,4 @@
+@import url("//netdna.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap-glyphicons.css");
 /*
  * Globals
  */
@@ -6,13 +7,16 @@
         font-size: 18px;
     }
 }
-@import url("//netdna.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap-glyphicons.css");
 
+html{
+    position: relative;
+    min-height: 100%;
+}
 
 body {
     font-family: Georgia, "Times New Roman", Times, serif;
     color: #555;
-
+    margin-bottom: 25px;
 }
 
 h1,
@@ -174,21 +178,30 @@ h6,
 /*
  * Footer
  */
-.blog-footer {
-    padding: 2.5rem 0;
-    color: 	#8d8da8;
-    text-align: center;
-    background-color: #ededf7;
-    border-top: .05rem solid #e5e5e5;
-}
+
 .blog-footer p:last-child {
     margin-bottom: 0;
 }
 
 
+.footer{
+    border-top: .05rem solid #e5e5e5;
+    text-align: center;
+    color: 	#8d8da8;
+    padding: 2.5rem 0;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    /* Set the fixed height of the footer here */
+    height: 25px;
+    line-height: 25px; /* Vertically center the text there */
+    background-color: #f5f5f5;
+}
 
 
-cite{
+
+
+code{
     font-size: 0.8em;
 
 }
