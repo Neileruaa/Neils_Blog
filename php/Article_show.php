@@ -36,9 +36,8 @@ require "navbar.php";?>
             <h1><?= $post['title']; ?></h1>
             <p class="blog-post-meta"><?= strftime("%d %b %Y",strtotime($post['date']));?> par <a href="AboutUs_page.php"><?=$post['adminUser']; ?></a></p>
             <hr>
-            <p>
+
                 <?= $post['content']; ?>
-            </p>
 
 
         </div>

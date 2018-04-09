@@ -63,12 +63,6 @@ $posts = $stmt ->fetchAll();
                if (++$compteur_articles== count($posts)) break; // on prend tous les articles de la bdd
            }
            ?>
-
-            <nav class="blog-pagination">
-                <a class="btn btn-outline-primary" href="#">Older</a>
-                <a class="btn btn-outline-primary " href="#">Newer</a>
-            </nav>
-
         </div><!-- /.blog-main -->
 
         <?php include "Article_aside.php" ?>
