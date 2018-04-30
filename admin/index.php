@@ -9,7 +9,7 @@ if (isset($_POST["username"]) && isset($_POST["password"]) && isset($_POST['subm
     $password = $_POST["password"];
 
     $sql = "SELECT idAdmin,username, password FROM ADMINISTRATEUR WHERE username = '".$username."';";
-    echo $sql;
+
     $stmt = $bdd->query($sql);
     $result = $stmt->fetchAll();
 
@@ -22,6 +22,7 @@ if (isset($_POST["username"]) && isset($_POST["password"]) && isset($_POST['subm
         $_SESSION['id'] = $result[0]['idAdmin'];
         header('Location: Admin.php');
     }
+    echo "mauvais identifiant ou mauvais mot de passe !";
 }
 ?>
 
