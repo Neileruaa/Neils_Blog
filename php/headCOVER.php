@@ -1,6 +1,5 @@
 <?php
-require "db.class.php";
-$DB = new DB();?>
+require "../Connect_db.php";?>
 <!doctype html>
 <html lang="en">
 <head>
